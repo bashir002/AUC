@@ -1,0 +1,73 @@
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        fullName:
+          type: string
+        emailAddress:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        courseOfStudy:
+          type: string
+        interestedCountry:
+          type: string
+        hasUniversityInMind:
+          type: string
+        budget:
+          type: string
+      example:
+        fullName: John Doe
+        emailAddress: jd@example.com
+        phoneNumber: +234 123 456 7890
+        courseOfStudy: Computer Science
+        interestedCountry: Canada
+        hasUniversityInMind: Yes
+        budget: $10,000 - $20,000
+  
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+
+  responses:
+
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 401
+            message: Please authenticate
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 403
+            message: Forbidden
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
