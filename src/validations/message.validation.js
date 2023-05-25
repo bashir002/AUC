@@ -1,6 +1,9 @@
 const Joi = require('joi');
 
 const sendMessage = {
+  query: Joi.object().keys({
+    reciever: Joi.string(),
+  }),
   body: Joi.object()
     .keys({
       fullName: Joi.string().trim().required(),
